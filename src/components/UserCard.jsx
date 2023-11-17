@@ -1,9 +1,11 @@
 const UserCard = () => {
   return (
-    <div className="w-full max-w-xs bg-slate-50 p-6 rounded space-y-2">
+    <div className="w-full max-w-xs bg-slate-50 p-6 rounded space-y-2 mx-auto">
       <header className="flex justify-between items-center">
-        <div>{`<=`}</div>
-        <div>Edit Profile</div>
+        <div></div>
+        <button className="text-sm text-teal-400 font-bold hover:text-teal-500 duration-100">
+          Edit Profile
+        </button>
       </header>
       <main className="flex">
         <div>
