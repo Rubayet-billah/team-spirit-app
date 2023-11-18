@@ -6,7 +6,6 @@ import ActionBar from "../components/ActionBar";
 const UsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // State to track current page
   const { data } = useGetAllUsersQuery();
-  console.log("this from page", data);
 
   const goToPreviousPage = () => {
     if (currentPage > 1) {

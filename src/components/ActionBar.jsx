@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const ActionBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -27,6 +28,11 @@ const ActionBar = () => {
     console.log("Selected sorting:", selectedSorting);
   };
 
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+  console.log(sortOrder, "sort order");
+
   return (
     <div className="flex items-center justify-between my-6">
       <div className="flex items-center">
@@ -37,13 +43,13 @@ const ActionBar = () => {
                 type="search"
                 id="search-dropdown"
                 onChange={handleInputChange}
-                className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l border-s-gray-50 border-s-2 border border-gray-300 focus:ring-teal-300 focus:border-teal-300"
                 placeholder="Search Mockups, Logos, Design Templates..."
                 required
               />
               <button
                 type="submit"
-                className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-teal-400 rounded-e border border-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300"
               >
                 <svg
                   className="w-4 h-4"
@@ -75,7 +81,7 @@ const ActionBar = () => {
         </label>
         <select
           id="filterOptions"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-300 focus:border-teal-300 block p-2.5"
           onChange={handleFilterChange}
         >
           <option value="domain">Domain</option>
@@ -83,7 +89,7 @@ const ActionBar = () => {
           <option value="availability">Availability</option>
         </select>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
         <label
           htmlFor="sortingOptions"
           className="block text-sm font-medium text-gray-900 mr-2"
@@ -92,13 +98,45 @@ const ActionBar = () => {
         </label>
         <select
           id="sortingOptions"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-300 focus:border-teal-300 block p-2.5"
           onChange={handleSortingChange}
         >
           <option value="name">Name</option>
           <option value="email">Email</option>
           <option value="id">ID</option>
         </select>
+        <div className="flex items-center">
+          <input
+            id="sort-radio-asc"
+            type="radio"
+            value="asc"
+            name="sort-radio"
+            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+            onChange={handleSortChange}
+          />
+          <label
+            htmlFor="sort-radio-asc"
+            className="ms-2 text-sm font-medium text-gray-900"
+          >
+            Asc
+          </label>
+        </div>
+        <div className="flex items-center">
+          <input
+            id="sort-radio-desc"
+            type="radio"
+            value="desc"
+            name="sort-radio"
+            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+            onChange={handleSortChange}
+          />
+          <label
+            htmlFor="sort-radio-desc"
+            className="ms-2 text-sm font-medium text-gray-900"
+          >
+            Desc
+          </label>
+        </div>
       </div>
     </div>
   );
