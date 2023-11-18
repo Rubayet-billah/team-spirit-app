@@ -1,8 +1,11 @@
 import { useState } from "react";
 import UserCard from "../components/UserCard";
+import { useGetAllUsersQuery } from "../redux/features/user/userApi";
 
 const UsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // State to track current page
+  const { data } = useGetAllUsersQuery();
+  console.log("this from page", data);
 
   const goToPreviousPage = () => {
     if (currentPage > 1) {
