@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UserCard from "../components/UserCard";
 import { useGetAllUsersQuery } from "../redux/features/user/userApi";
+import ActionBar from "../components/ActionBar";
 
 const UsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // State to track current page
@@ -38,7 +39,9 @@ const UsersPage = () => {
 
   return (
     <div className="container">
-      <div></div>
+      <div>
+        <ActionBar />
+      </div>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-5 md:mt-12">
         {/* Render UserCard components based on the current page */}
         {renderUserCards()}
