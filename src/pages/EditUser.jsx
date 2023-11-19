@@ -1,32 +1,23 @@
-import { useForm } from "react-hook-form";
-import { useCreateUserMutation } from "../redux/features/user/userApi";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
-const AddUser = () => {
-  const { register, handleSubmit } = useForm();
-  const [createUser, { data, isSuccess, isError, error }] =
-    useCreateUserMutation();
+const EditUser = () => {
+  const { register, handleSubmit, reset } = useForm();
 
-  const handleAddUser = (data) => {
-    createUser(data);
-    console.log("add user", data);
+  const handleEditUser = (data) => {
+    console.log(data);
   };
 
   useEffect(() => {
-    if (isSuccess) window.alert("User created successfully");
-    if (isError) {
-      window.alert("Failed creating user");
-    }
-  }, [isError, isSuccess]);
+    reset(user);
+  }, [user, reset]);
 
   return (
     <div className="w-full">
       <section className="bg-white">
         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-          <h2 className="mb-4 text-xl font-bold text-gray-900">
-            Add a new user
-          </h2>
-          <form onSubmit={handleSubmit(handleAddUser)}>
+          <h2 className="mb-4 text-xl font-bold text-gray-900">Edit User</h2>
+          <form onSubmit={handleSubmit(handleEditUser)}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div className="sm:col-span-2">
                 <label
@@ -153,4 +144,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;
