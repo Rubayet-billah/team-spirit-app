@@ -1,35 +1,43 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  setFilterBy,
+  setSearchTerm,
+  setSortBy,
+  setSortOrder,
+} from "../redux/features/filter/filterSlice";
 
 const ActionBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState("");
+  const dispatch = useDispatch();
+  const [searchTermLocal, setSearchTermLocal] = useState("");
+  const [sortOrder, setSortOrderLocal] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // Perform actions based on the search term
-    console.log("Searched:", searchTerm);
+    dispatch(setSearchTerm(searchTermLocal));
+    console.log("Searched:", searchTermLocal);
   };
 
   const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
+    setSearchTermLocal(e.target.value);
   };
 
   const handleFilterChange = (e) => {
-    // Handle filter change functionality
     const selectedFilter = e.target.value;
-    // Perform actions based on the selected filter
+    dispatch(setFilterBy(selectedFilter));
     console.log("Selected filter:", selectedFilter);
   };
 
   const handleSortingChange = (e) => {
-    // Handle sorting change functionality
     const selectedSorting = e.target.value;
-    // Perform actions based on the selected sorting option
+    dispatch(setSortBy(selectedSorting));
     console.log("Selected sorting:", selectedSorting);
   };
 
   const handleSortChange = (e) => {
-    setSortOrder(e.target.value);
+    const selectedSortOrder = e.target.value;
+    setSortOrderLocal(selectedSortOrder);
+    dispatch(setSortOrder(selectedSortOrder));
   };
   console.log(sortOrder, "sort order");
 
@@ -84,6 +92,7 @@ const ActionBar = () => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-300 focus:border-teal-300 block py-1 px-2"
           onChange={handleFilterChange}
         >
+          <option value="">Select</option>
           <option value="domain">Domain</option>
           <option value="gender">Gender</option>
           <option value="available">Availability</option>
@@ -101,6 +110,7 @@ const ActionBar = () => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-300 focus:border-teal-300 block py-1 px-2"
           onChange={handleSortingChange}
         >
+          <option value="">Select</option>
           <option value="name">Name</option>
           <option value="email">Email</option>
           <option value="id">ID</option>

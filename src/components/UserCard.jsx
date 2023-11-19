@@ -21,13 +21,14 @@ const UserCard = ({ user }) => {
           <h2 className="text-xl font-bold leading-none">
             {user?.first_name} {user?.last_name}
           </h2>
-          <small>@{user?.email.split("@")[0]}</small>
+          <small>{user?.email}</small>
+          {/* <small>@{user?.email.split("@")[0]}</small> */}
           <p>{user?.domain}</p>
         </div>
       </main>
       <footer className="flex justify-between items-center">
         <div>
-          <small className="font-bold text-xs leading-none">Post</small>
+          <small className="font-bold text-xs leading-none">ID</small>
           <h4 className="text-center leading-3">{user?.id}</h4>
         </div>
         <div>

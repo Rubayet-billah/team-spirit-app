@@ -6,15 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../redux/features/pagination/paginationSlice";
 
 const UsersPage = () => {
-  const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.pagination.currentPage);
-  const cardsPerPage = useSelector((state) => state.pagination.pageLimit);
-
-  const startIndex = (currentPage - 1) * cardsPerPage;
+  const { currentPage, cardsPerPage } = useSelector(
+    (state) => state.pagination
+  );
+  const { searchTerm, filterBy, sortBy, sortOrder } = useSelector(
+    (state) => state.filter
+  );
 
   const { data: usersData } = useGetAllUsersQuery({
     page: currentPage,
     limit: cardsPerPage,
+    search: searchTerm,
+    filter: filterBy,
+    sortBy: sortBy,
+    sortOrder: sortOrder,
   });
 
   const totalUsersCount = usersData?.count;
