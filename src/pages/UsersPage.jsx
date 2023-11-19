@@ -2,6 +2,7 @@ import { useState } from "react";
 import UserCard from "../components/UserCard";
 import { useGetAllUsersQuery } from "../redux/features/user/userApi";
 import ActionBar from "../components/ActionBar";
+import Pagination from "../components/Pagination";
 
 const UsersPage = () => {
   const [currentPage, setCurrentPage] = useState(1); // State to track current page
@@ -46,39 +47,7 @@ const UsersPage = () => {
         {renderUserCards()}
       </section>
       <div className="my-6 flex justify-center">
-        <nav aria-label="Page navigation example">
-          <ul className="inline-flex -space-x-px text-base h-10">
-            <li>
-              <button
-                onClick={goToPreviousPage}
-                className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-r-0 border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 ${
-                  currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-                disabled={currentPage === 1}
-              >
-                Previous
-              </button>
-            </li>
-            <li>
-              <span className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300">
-                {currentPage}
-              </span>
-            </li>
-            <li>
-              <button
-                onClick={goToNextPage}
-                className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-l-1 border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 ${
-                  currentPage === 5 /* Change '5' to total pages */
-                    ? "opacity-50 cursor-not-allowed"
-                    : ""
-                }`}
-                disabled={currentPage === 5 /* Change '5' to total pages */}
-              >
-                Next
-              </button>
-            </li>
-          </ul>
-        </nav>
+        <Pagination />
       </div>
     </div>
   );
