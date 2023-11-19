@@ -1,4 +1,11 @@
+import { useForm } from "react-hook-form";
+
 const AddUser = () => {
+  const { register, handleSubmit } = useForm();
+
+  const handleAddUser = (data) => {
+    console.log("add user", data);
+  };
   return (
     <div className="w-full">
       <section className="bg-white">
@@ -6,7 +13,7 @@ const AddUser = () => {
           <h2 className="mb-4 text-xl font-bold text-gray-900">
             Add a new user
           </h2>
-          <form action="#">
+          <form onSubmit={handleSubmit(handleAddUser)}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div className="sm:col-span-2">
                 <label
@@ -17,11 +24,10 @@ const AddUser = () => {
                 </label>
                 <input
                   type="text"
-                  name="first-name"
                   id="first-name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-teal-500 focus:border-teal-500 block w-full p-2"
                   placeholder="Roxanna"
-                  required
+                  {...register("first_name", { required: true })}
                 />
               </div>
               <div className="sm:col-span-2">
@@ -33,11 +39,10 @@ const AddUser = () => {
                 </label>
                 <input
                   type="text"
-                  name="last-name"
                   id="last-name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-teal-500 focus:border-teal-500 block w-full p-2"
                   placeholder="Skipton"
-                  required
+                  {...register("last_name", { required: true })}
                 />
               </div>
               <div className="w-full">
@@ -49,11 +54,10 @@ const AddUser = () => {
                 </label>
                 <input
                   type="email"
-                  name="email"
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-teal-500 focus:border-teal-500 block w-full p-2"
                   placeholder="rskipton2s@constantcontact.com"
-                  required
+                  {...register("email", { required: true })}
                 />
               </div>
               <div>
@@ -65,9 +69,8 @@ const AddUser = () => {
                 </label>
                 <select
                   id="gender"
-                  name="gender"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-teal-500 focus:border-teal-500 block w-full p-2"
-                  required
+                  {...register("gender", { required: true })}
                 >
                   <option value="" disabled selected>
                     Select gender
@@ -86,11 +89,10 @@ const AddUser = () => {
                 </label>
                 <input
                   type="text"
-                  name="avatar"
                   id="avatar"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-teal-500 focus:border-teal-500 block w-full p-2"
                   placeholder="https://robohash.org/ullamnobisquia.png?size=50x50&set=set1"
-                  required
+                  {...register("avatar", { required: true })}
                 />
               </div>
               <div className="sm:col-span-2">
@@ -102,11 +104,10 @@ const AddUser = () => {
                 </label>
                 <input
                   type="text"
-                  name="domain"
                   id="domain"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-teal-500 focus:border-teal-500 block w-full p-2"
                   placeholder="UI Designing"
-                  required
+                  {...register("domain", { required: true })}
                 />
               </div>
               <div>
@@ -114,8 +115,8 @@ const AddUser = () => {
                   <input
                     type="checkbox"
                     id="available"
-                    name="available"
                     className="text-teal-500 focus:ring-teal-500 rounded"
+                    {...register("available")}
                   />
                   <label
                     htmlFor="available"
