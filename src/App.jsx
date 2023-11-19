@@ -1,4 +1,5 @@
 import UserCard from "./components/UserCard";
+import AddUser from "./pages/AddUser";
 import UsersPage from "./pages/UsersPage";
 
 function App() {
@@ -6,7 +7,8 @@ function App() {
     <>
       <div className="grid place-items-center min-h-screen">
         {/* <UserCard /> */}
-        <UsersPage />
+        {/* <UsersPage /> */}
+        <AddUser />
       </div>
     </>
   );
