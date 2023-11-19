@@ -28,14 +28,14 @@ const UserCard = ({ user }) => {
       </main>
       <footer className="flex justify-between items-center">
         <div>
-          <small className="font-bold text-xs leading-none">ID</small>
+          <small className="font-bold text-xs leading-none">Gender</small>
+          <h4 className="text-center leading-3">{user?.gender}</h4>
+        </div>
+        <div>
+          <small className="font-bold text-xs leading-none">Active</small>
           <h4 className="text-center leading-3">
             {user?.available ? "Yes" : "No"}
           </h4>
-        </div>
-        <div>
-          <small className="font-bold text-xs leading-none">Gender</small>
-          <h4 className="text-center leading-3">{user?.gender}</h4>
         </div>
         <div>
           <button className="px-2 py-[2px] bg-teal-400 text-white text-sm font-bold uppercase rounded mt-[12px]">

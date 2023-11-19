@@ -4,15 +4,13 @@ import Pagination from "../components/Pagination";
 import { useSelector } from "react-redux";
 
 const UsersPage = () => {
-  const { currentPage, cardsPerPage } = useSelector(
-    (state) => state.pagination
-  );
+  const { currentPage, pageLimit } = useSelector((state) => state.pagination);
   const { searchTerm, domain, gender, available, sortBy, sortOrder } =
     useSelector((state) => state.filter);
 
   const { data: usersData } = useGetAllUsersQuery({
     page: currentPage,
-    limit: cardsPerPage,
+    limit: pageLimit,
     search: searchTerm,
     domain,
     gender,
@@ -22,7 +20,7 @@ const UsersPage = () => {
   });
 
   const totalUsersCount = usersData?.count;
-  const totalPages = Math.ceil(totalUsersCount / cardsPerPage);
+  const totalPages = Math.ceil(totalUsersCount / pageLimit);
 
   console.log("user data", usersData);
 
