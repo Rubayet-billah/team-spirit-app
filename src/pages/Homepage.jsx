@@ -6,10 +6,7 @@ const Homepage = () => {
     <div>
       <Header />
       <div className="grid place-items-center min-h-screen">
-        {/* <UserCard /> */}
         <UsersPage />
-        {/* <AddUser /> */}
-        {/* <EditUser /> */}
       </div>
     </div>
   );

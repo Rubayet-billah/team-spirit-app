@@ -9,8 +9,8 @@ import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <>
-      {/* <RouterProvider router={router} /> */}
-      <Sidebar />
+      <RouterProvider router={router} />
+      {/* <Sidebar /> */}
     </>
   );
 }
