@@ -33,6 +33,11 @@ const userApi = baseApi.injectEndpoints({
         method: "DELETE",
       }),
     }),
+    getAllDomains: build.query({
+      query: () => ({
+        url: "/users/get-domains",
+      }),
+    }),
   }),
 });
 
@@ -42,4 +47,5 @@ export const {
   useUpdateUserMutation,
   useDeleteUserMutation,
   useGetSingleUserQuery,
+  useGetAllDomainsQuery,
 } = userApi;

@@ -1,15 +1,25 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+import {
+  useGetSingleUserQuery,
+  useUpdateUserMutation,
+} from "../redux/features/user/userApi";
 
 const EditUser = () => {
   const { register, handleSubmit, reset } = useForm();
+  const { id } = useParams();
+  const { data: user } = useGetSingleUserQuery(id);
+  const [updateUser, { isLoading, isError, isSuccess }] =
+    useUpdateUserMutation();
 
   const handleEditUser = (data) => {
     console.log(data);
+    updateUser({ id, userData: data }).then(() => {
+      window.alert("User updated");
+    });
   };
-  let user = {
-    available: true,
-  };
+  // useeffect for form default value set
   useEffect(() => {
     reset(user);
   }, [user, reset]);
@@ -18,7 +28,7 @@ const EditUser = () => {
     <div className="w-full">
       <section className="bg-white">
         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-          <h2 className="mb-4 text-xl font-bold text-gray-900">Edit User</h2>
+          <h2 className="mb-4 text-xl font-bold text-gray-900">Update User</h2>
           <form onSubmit={handleSubmit(handleEditUser)}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
               <div className="sm:col-span-2">
@@ -137,7 +147,7 @@ const EditUser = () => {
               type="submit"
               className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-teal-400 rounded focus:ring-4 focus:ring-teal-200 hover:bg-teal-500"
             >
-              Add User
+              Update
             </button>
           </form>
         </div>
