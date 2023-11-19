@@ -1,13 +1,29 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
+import { Link } from "react-router-dom";
+import { useDeleteUserMutation } from "../redux/features/user/userApi";
 
 const UserCard = ({ user }) => {
+  const [deleteUser] = useDeleteUserMutation();
+
+  const handleUserDelete = (id, name) => {
+    const confirmation = window.confirm(`Are you sure to delete ${name}`);
+    if (confirmation) {
+      deleteUser(id).then(() => {
+        window.alert("User deleted successfully");
+      });
+    }
+  };
   return (
     <div className="w-full max-w-xs bg-slate-50 p-6 rounded space-y-2 mx-auto">
       <header className="flex justify-between items-center">
         <div></div>
-        <button className="text-sm text-teal-400 font-bold hover:text-teal-500 duration-100">
+        <Link
+          to={`/edit-user/${user?.id}`}
+          className="text-sm text-teal-400 font-bold hover:text-teal-500 duration-100"
+        >
           Edit Profile
-        </button>
+        </Link>
       </header>
       <main className="flex">
         <div>
@@ -38,8 +54,11 @@ const UserCard = ({ user }) => {
           </h4>
         </div>
         <div>
-          <button className="px-2 py-[2px] bg-teal-400 text-white text-sm font-bold uppercase rounded mt-[12px]">
-            Button
+          <button
+            onClick={() => handleUserDelete(user?.id, user?.first_name)}
+            className="px-2 py-[2px] bg-red-400 text-white text-sm font-bold uppercase rounded mt-[12px]"
+          >
+            Delete
           </button>
         </div>
       </footer>

@@ -7,11 +7,13 @@ const userApi = baseApi.injectEndpoints({
         url: "/users",
         params: queryParams,
       }),
+      providesTags: ["USER"],
     }),
     getSingleUser: build.query({
       query: (id) => ({
         url: `/users/${id}`,
       }),
+      providesTags: ["USER"],
     }),
     createUser: build.mutation({
       query: (userData) => ({
@@ -26,12 +28,14 @@ const userApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: userData,
       }),
+      invalidatesTags: ["USER"],
     }),
     deleteUser: build.mutation({
       query: (id) => ({
         url: `/users/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["USER"],
     }),
     getAllDomains: build.query({
       query: () => ({
