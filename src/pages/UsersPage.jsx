@@ -1,53 +1,41 @@
-import { useState } from "react";
 import UserCard from "../components/UserCard";
 import { useGetAllUsersQuery } from "../redux/features/user/userApi";
 import ActionBar from "../components/ActionBar";
 import Pagination from "../components/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../redux/features/pagination/paginationSlice";
 
 const UsersPage = () => {
-  const [currentPage, setCurrentPage] = useState(1); // State to track current page
-  const { data } = useGetAllUsersQuery();
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.pagination.currentPage);
+  const cardsPerPage = 50;
 
-  const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
-  };
+  const startIndex = (currentPage - 1) * cardsPerPage;
 
-  const goToNextPage = () => {
-    // Considering a fixed number of pages (for demonstration purposes)
-    const totalPages = 5; // Change this value according to your total pages
+  const { data: usersData } = useGetAllUsersQuery({
+    page: currentPage,
+    limit: cardsPerPage,
+  });
 
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
+  const totalUsersCount = usersData?.count;
+  const totalPages = Math.ceil(totalUsersCount / cardsPerPage);
+
+  console.log("user data", usersData);
 
   const renderUserCards = () => {
-    // Logic to render UserCard components based on current page
-    const cardsPerPage = 16; // Change this value to the number of cards per page
-    const startIndex = (currentPage - 1) * cardsPerPage;
-    const endIndex = startIndex + cardsPerPage;
-
-    return Array.from({ length: endIndex }).map((_, index) => {
-      if (index >= startIndex && index < endIndex) {
-        return <UserCard key={index} />;
-      }
-      return null;
-    });
+    return usersData?.users.map((userData, index) => (
+      <UserCard key={index} user={userData} />
+    ));
   };
 
   return (
     <div className="container">
-      <div>
-        <ActionBar />
-      </div>
+      <ActionBar />
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-5 md:mt-12">
-        {/* Render UserCard components based on the current page */}
         {renderUserCards()}
       </section>
       <div className="my-6 flex justify-center">
-        <Pagination />
+        <Pagination totalPages={totalPages} />
       </div>
     </div>
   );

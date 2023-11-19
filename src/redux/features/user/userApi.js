@@ -8,8 +8,9 @@ const userApi = baseApi.injectEndpoints({
       }),
     }),
     getAllUsers: build.query({
-      query: () => ({
+      query: (queryParams) => ({
         url: "/users",
+        params: queryParams,
       }),
     }),
   }),

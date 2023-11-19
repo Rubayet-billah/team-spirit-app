@@ -43,13 +43,13 @@ const ActionBar = () => {
                 type="search"
                 id="search-dropdown"
                 onChange={handleInputChange}
-                className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l border-s-gray-50 border-s-2 border border-gray-300 focus:ring-teal-300 focus:border-teal-300"
+                className="block py-1 px-2 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l border-s-gray-50 border-s-2 border border-gray-300 focus:ring-teal-300 focus:border-teal-300 outline-offset-0"
                 placeholder="Search Mockups, Logos, Design Templates..."
                 required
               />
               <button
                 type="submit"
-                className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-teal-400 rounded-e border border-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300"
+                className="absolute top-0 end-0 py-1 px-2 text-sm font-medium h-full text-white bg-teal-400 rounded-e border border-teal-400 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-teal-300"
               >
                 <svg
                   className="w-4 h-4"
@@ -81,7 +81,7 @@ const ActionBar = () => {
         </label>
         <select
           id="filterOptions"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-300 focus:border-teal-300 block p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-300 focus:border-teal-300 block py-1 px-2"
           onChange={handleFilterChange}
         >
           <option value="domain">Domain</option>
@@ -98,7 +98,7 @@ const ActionBar = () => {
         </label>
         <select
           id="sortingOptions"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-300 focus:border-teal-300 block p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-300 focus:border-teal-300 block py-1 px-2"
           onChange={handleSortingChange}
         >
           <option value="name">Name</option>

@@ -1,4 +1,6 @@
-const UserCard = () => {
+import React from "react";
+
+const UserCard = ({ user }) => {
   return (
     <div className="w-full max-w-xs bg-slate-50 p-6 rounded space-y-2 mx-auto">
       <header className="flex justify-between items-center">
@@ -11,21 +13,22 @@ const UserCard = () => {
         <div>
           <img
             className="w-20 rounded-3xl"
-            src="https://img.freepik.com/premium-vector/student-avatar-illustration-user-profile-icon-youth-avatar_118339-4395.jpg"
-            alt="user-image"
+            src={user?.avatar}
+            alt={`user-${user?.id}-image`}
           />
         </div>
         <div className="ml-3 flex flex-col justify-center">
-          <h2 className="text-xl font-bold leading-none">John Doe</h2>
-          <small>@johndoe</small>
-
-          <p>Animator</p>
+          <h2 className="text-xl font-bold leading-none">
+            {user?.first_name} {user?.last_name}
+          </h2>
+          <small>@{user?.email.split("@")[0]}</small>
+          <p>{user?.domain}</p>
         </div>
       </main>
       <footer className="flex justify-between items-center">
         <div>
           <small className="font-bold text-xs leading-none">Post</small>
-          <h4 className="text-center leading-3">41</h4>
+          <h4 className="text-center leading-3">{user?.id}</h4>
         </div>
         <div>
           <small className="font-bold text-xs leading-none">Ratings</small>
