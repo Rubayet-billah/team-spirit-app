@@ -86,7 +86,7 @@ const ActionBar = () => {
         >
           <option value="domain">Domain</option>
           <option value="gender">Gender</option>
-          <option value="availability">Availability</option>
+          <option value="available">Availability</option>
         </select>
       </div>
       <div className="flex items-center gap-2">

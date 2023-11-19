@@ -8,7 +8,7 @@ import { setCurrentPage } from "../redux/features/pagination/paginationSlice";
 const UsersPage = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.pagination.currentPage);
-  const cardsPerPage = 50;
+  const cardsPerPage = useSelector((state) => state.pagination.pageLimit);
 
   const startIndex = (currentPage - 1) * cardsPerPage;
 
