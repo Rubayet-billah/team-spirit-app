@@ -7,7 +7,9 @@ const EditUser = () => {
   const handleEditUser = (data) => {
     console.log(data);
   };
-
+  let user = {
+    available: true,
+  };
   useEffect(() => {
     reset(user);
   }, [user, reset]);
