@@ -77,7 +77,7 @@ const Sidebar = () => {
                       id="search-dropdown"
                       onChange={handleInputChange}
                       className="block py-1 px-2 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-l border border-gray-300 focus:ring-teal-300 focus:border-teal-300 outline-offset-0"
-                      placeholder="Search Mockups, Logos, Design Templates..."
+                      placeholder="Search User"
                       required
                     />
                     <button
